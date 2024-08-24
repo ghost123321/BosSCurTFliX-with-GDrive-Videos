@@ -4,9 +4,9 @@
   "display": "standalone",
   "name": "BosSCurT FliX",
   "orientation": "any",
-  "scope": "https://bcstocks.online/",
+  "scope": "https://ghost123321.github.io/BosSCurTFliX-with-GDrive-Videos/",
   "short_name": "BosSCurT FliX",
-  "start_url": "",
+  "start_url": "https://ghost123321.github.io/BosSCurTFliX-with-GDrive-Videos/",
   "theme_color": "#1f2029",
   "icons": [
     {
