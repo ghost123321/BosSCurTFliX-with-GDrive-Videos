@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="theme-color" content="#09182b" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="./bcstocks.png" type="image/x-icon" />
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap" rel="stylesheet">
+
+<link rel="manifest" href="./manifest.json" />
+<style>
+    body {
+        margin: 0;
+        overflow: hidden;
+        font-family: 'Open Sans', sans-serif;
+        background-color: #09182b;
+    }
+    .loading-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #09182b;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+    }
+    .logo {
+        width: 192px; /* veya splash logosunun istediğiniz boyutu */
+        height: 192px; /* veya splash logosunun istediğiniz boyutu */
+        animation: pulse 1.5s infinite alternate;
+        transform: scale(1.2);
+        z-index: 1;
+    }
+    @keyframes pulse {
+        from { transform: scale(1.1); }
+        to { transform: scale(1.5); }
+    }
+    
+    .iframe-container {
+        width: 100%;
+        height: 100%;
+        display: none;
+        border: none;
+        overflow: hidden;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+    .iframe {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border: none;
+        opacity: 0;
+        transform: scale(0.95);
+        filter: blur(5px);
+        transition: opacity 1s ease, transform 1s ease, filter 1s ease;
+    }
+    .iframe.loaded {
+        opacity: 1;
+        transform: scale(1);
+        filter: blur(0);
+    }
+</style>
+</head>
+<body>
+    
+<div class="loading-container"> 
+    <img class="logo" src="./bcstocks.png" alt="Logo">
+</div>
+<div class="iframe-container">
+    <iframe class="iframe" src="https://script.google.com/macros/s/AKfycbxCwCKTRaSXRoDoNbDZpxUQTDnz96QU2XFcz2R9S8mS/exec" frameborder="0" allowfullscreen></iframe>
+</div>
+<script>
+    function checkIfInIframe() {
+    if (window !== window.top) {
+        window.top.location = window.location;
+    }
+}
+
+// Belirli aralıklarla checkIfInIframe() fonksiyonunu çağırmak için setInterval kullanabiliriz.
+// Örneğin, her 500 milisaniyede bir kontrol edebiliriz.
+setInterval(checkIfInIframe, 500);
+
+    
+    document.querySelector('.iframe').addEventListener('load', function() {
+        
+       
+        document.querySelector('.loading-container').style.display = 'none';
+        document.querySelector('.iframe-container').style.display = 'block';
+       
+
+  setTimeout(() => {
+    this.classList.add('loaded');
+    changeThemeColor('#464661'); // Örnek olarak tema rengini turuncu yapalım
+  }, 200);       
+});
+function changeThemeColor(color) {
+  let themeMetaTag = document.querySelector('meta[name="theme-color"]');
+  if (themeMetaTag) {
+    themeMetaTag.setAttribute('content', color);
+  } else {
+    // Eğer meta etiketi yoksa, yeni bir tane oluşturabiliriz
+    themeMetaTag = document.createElement('meta');
+    themeMetaTag.setAttribute('name', 'theme-color');
+    themeMetaTag.setAttribute('content', color);
+    document.head.appendChild(themeMetaTag);
+  }
+}
+        
+    
+</script>
+<script>
+    document.title = "B.C. StockS";
+</script>
+<script>
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function () {
+            navigator.serviceWorker.register('/sw.js?v=3');
+        });
+    }
+</script>
+    
+</body>
+</html>
