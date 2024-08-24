@@ -1,0 +1,33 @@
+{
+  "background_color": "#09182b",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "BosSCurT FliX",
+  "orientation": "any",
+  "scope": "https://bcstocks.online/",
+  "short_name": "BosSCurT FliX",
+  "start_url": "",
+  "theme_color": "#1f2029",
+  "icons": [
+    {
+      "src": "./bcstocks.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }    
+  ],
+
+  "id": "bc1250flix253983",
+  "description": "B.C. MediaS",
+  "lang": "tr",
+  "categories": [
+    "media"
+  ],
+  "display_override": [
+    "window-controls-overlay",
+    "standalone",
+    "minimal-ui"
+  ],
+  "edge_side_panel": {
+    "preferred_width": 0
+  }
+}
